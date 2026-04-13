@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أميرتي  في شم النسيم 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ffafbd;
+            --rose: #ffc3a0;
+            --gold: #d4af37;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fff5f5 0%, #fce4ec 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Cairo', sans-serif;
+            color: #5d4037;
+        }
+
+        /* الموسيقى بشكل أنيق */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+        }
+        #playBtn {
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(255, 175, 189, 0.5);
+            cursor: pointer;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        /* تأثير الخلفية المتساقطة */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: #d81b60;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .typewriter {
+            font-size: 1.5rem;
+            color: #880e4f;
+            min-height: 1.6em;
+        }
+
+        /* المعرض الـ 3D الرهيب */
+        .gallery-3d {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin-top: 100px;
+            margin-bottom: 150px;
+            transform-style: preserve-3d;
+            animation: rotate 25s infinite linear;
+        }
+
+        .gallery-3d:hover {
+            animation-play-state: paused;
+        }
+
+        .gallery-3d div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 4px solid white;
+        }
+
+        .gallery-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 11px;
+        }
+
+        @keyframes rotate {
+            from { transform: perspective(1000px) rotateY(0deg); }
+            to { transform: perspective(1000px) rotateY(360deg); }
+        }
+
+        /* توزيع الصور في دائرة 3D */
+        .img-1 { transform: rotateY(0deg) translateZ(350px); }
+        .img-2 { transform: rotateY(60deg) translateZ(350px); }
+        .img-3 { transform: rotateY(120deg) translateZ(350px); }
+        .img-4 { transform: rotateY(180deg) translateZ(350px); }
+        .img-5 { transform: rotateY(240deg) translateZ(350px); }
+        .img-6 { transform: rotateY(300deg) translateZ(350px); }
+
+        /* قسم الرسالة المفاجئة */
+        .surprise-section {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.1);
+        }
+
+        .heart-btn {
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        .heart-btn:hover {
+            transform: scale(1.1);
+            background: #ad1457;
+        }
+
+        #hiddenMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.3rem;
+            color: #d81b60;
+            line-height: 1.6;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #ad1457;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music-player">
+        <button id="playBtn">🌸</button>
+        <audio id="bgMusic" loop>
+            <source src="Albumaty.Com_saad_hsny_aldnya_rbya.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <canvas id="particles"></canvas>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>كل شم نسيم وأنتي منورة دنيتي 🌸</h1>
+            <div class="typewriter" id="typewriter"></div>
+        </div>
+
+        <!-- معرض الصور 3D -->
+        <div class="gallery-3d">
+            <!-- استبدل هذه الصور بصورك أنت وهي -->
+            <div class="img-1"><img src="59909d4a-faed-45f8-9b39-d2f5e1693d14.jpg" alt="صورة حب"></div>
+            <div class="img-2"><img src="cce5ab69-28c1-4b07-87e6-7f420a42c49a.jpg" alt="ورد"></div>
+            <div class="img-3"><img src="https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?w=400" alt="ربيع"></div>
+            <div class="img-4"><img src="d7da54b5-90e5-4f94-8376-c795f62611d1.jpg" alt="صورة 4"></div>
+            <div class="img-5"><img src="a17b12a0-a828-440a-8012-147d0f3c7599.jpg" alt="بيض ملون"></div>
+            <div class="img-6"><img src="image.jpg" alt="صورة 6"></div>
+        </div>
+
+        <div class="surprise-section">
+            <button class="heart-btn" onclick="showSurprise()">اضغطي هنا يا روحي 💖</button>
+            <div id="hiddenMessage">
+                "الدنيا ربيع والجو بديع.. لكن وجودك في حياتي هو الربيع الحقيقي. <br>
+                كل سنة وأنتي حبيبتي، كل شم نسيم وإحنا مع بعض." 🌹
+            </div>
+        </div>
+
+        <footer>
+            إهداء خاص من [Mody] إلى أجمل بنت في الدنيا 💍
+        </footer>
+    </div>
+
+    <script>
+        // 1. نظام الكتابة الآلية
+        const text = "أجمل زهرة في بستان حياتي.. الربيع بدأ بابتسامتك..";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        window.onload = typeWriter;
+
+        // 2. التحكم في الموسيقى
+        const btn = document.getElementById('playBtn');
+        const audio = document.getElementById('bgMusic');
+        let playing = false;
+        btn.onclick = () => {
+            if(!playing) { audio.play(); btn.innerText = "⏸️"; }
+            else { audio.pause(); btn.innerText = "🌸"; }
+            playing = !playing;
+        }
+
+        // 3. مفاجأة القلب
+        function showSurprise() {
+            document.getElementById('hiddenMessage').style.display = 'block';
+            confetti();
+        }
+
+        // 4. تساقط القلوب والزهور (Canvas)
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const emojis = ['🌸', '💖', '✨', '🌷', '🦋'];
+        let particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 20 + 10;
+                this.speedY = Math.random() * 2 + 1;
+                this.char = emojis[Math.floor(Math.random() * emojis.length)];
+                this.angle = Math.random() * 360;
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y > canvas.height) this.y = -20;
+                this.angle += 0.5;
+            }
+            draw() {
+                ctx.font = this.size + "px serif";
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.fillText(this.char, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        for (let j = 0; j < 40; j++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
