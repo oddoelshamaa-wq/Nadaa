@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أميرتي في شم النسيم 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff758c;
+            --secondary: #ff7eb3;
+            --accent: #ffd166;
+            --glass: rgba(255, 255, 255, 0.2);
+            --text-color: #4a148c;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* الموسيقى */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        #playBtn {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* حاوية المحتوى */
+        .main-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            transition: transform 0.1s; /* للاهتزاز */
+        }
+
+        .hero-section {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 40px 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        .typewriter {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(0,0,0,0.1);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 50px;
+        }
+
+        /* معرض الصور المطور */
+        .gallery-container {
+            perspective: 1200px;
+            padding: 100px 0;
+        }
+
+        .gallery-3d {
+            position: relative;
+            width: 220px;
+            height: 280px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            animation: rotate3d 20s infinite linear;
+        }
+
+        @keyframes rotate3d {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .gallery-3d div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            border-radius: 20px;
+            border: 5px solid white;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .gallery-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* توزيع الصور بشكل دائري */
+        .img-1 { transform: rotateY(0deg) translateZ(300px); }
+        .img-2 { transform: rotateY(60deg) translateZ(300px); }
+        .img-3 { transform: rotateY(120deg) translateZ(300px); }
+        .img-4 { transform: rotateY(180deg) translateZ(300px); }
+        .img-5 { transform: rotateY(240deg) translateZ(300px); }
+        .img-6 { transform: rotateY(300deg) translateZ(300px); }
+
+        /* قسم الزر والمفاجأة */
+        .surprise-box {
+            margin-top: 50px;
+        }
+
+        .heart-btn {
+            background: #fff;
+            color: #ff4081;
+            border: none;
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-btn:active {
+            transform: scale(0.9);
+        }
+
+        #hiddenMessage {
+            display: none;
+            margin-top: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 1.4rem;
+            color: #d81b60;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* تأثير الاهتزاز عند الضغط */
+        .shake-anim {
+            animation: shakeScreen 0.5s ease-in-out;
+        }
+
+        @keyframes shakeScreen {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-10px) rotate(-1deg); }
+            40% { transform: translateX(10px) rotate(1deg); }
+            60% { transform: translateX(-10px) rotate(-1deg); }
+            80% { transform: translateX(10px) rotate(1deg); }
+        }
+
+        footer {
+            margin-top: 80px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music-player">
+        <button id="playBtn">🎵</button>
+        <audio id="bgMusic" loop>
+            <source src="Albumaty.Com_saad_hsny_aldnya_rbya.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <canvas id="particles"></canvas>
+
+    <div class="main-wrapper" id="mainContent">
+        <div class="hero-section">
+            <h1>كل شم نسيم وأنتي منورة دنيتي 🌸</h1>
+            <div class="typewriter" id="typewriter"></div>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-3d">
+                <div class="img-1"><img src="59909d4a-faed-45f8-9b39-d2f5e1693d14.jpg" alt="1"></div>
+                <div class="img-2"><img src="cce5ab69-28c1-4b07-87e6-7f420a42c49a.jpg" alt="2"></div>
+                <div class="img-3"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400" alt="3"></div>
+                <div class="img-4"><img src="d7da54b5-90e5-4f94-8376-c795f62611d1.jpg" alt="4"></div>
+                <div class="img-5"><img src="a17b12a0-a828-440a-8012-147d0f3c7599.jpg" alt="5"></div>
+                <div class="img-6"><img src="image.jpg" alt="6"></div>
+            </div>
+        </div>
+
+        <div class="surprise-box">
+            <button class="heart-btn" onclick="triggerSurprise()">اضغطي هنا يا روحي 💖</button>
+            <div id="hiddenMessage">
+                <p>"الدنيا ربيع والجو بديع.. قفلي على كل المواضيع.." 🎵</p>
+                <p>وجودك في حياتي هو الربيع اللي مبيخلصش أبداً. كل سنة وإحنا مع بعض يا أغلى ما عندي في الكون. 💍🌹</p>
+            </div>
+        </div>
+
+        <footer>
+            بكل الحب من [Mody] إلى ملكة قلبه 👑
+        </footer>
+    </div>
+
+    <!-- مكتبة Confetti للاحتفال -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // 1. الكتابة الآلية
+        const introText = "أجمل زهرة في بستان حياتي.. الربيع بدأ بابتسامتك.. ✨";
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < introText.length) {
+                document.getElementById("typewriter").innerHTML += introText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        window.onload = typeWriter;
+
+        // 2. الموسيقى والاهتزاز الخفيف
+        const playBtn = document.getElementById('playBtn');
+        const audio = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        playBtn.onclick = () => {
+            // اهتزاز بسيط عند لمس الزر
+            if (navigator.vibrate) navigator.vibrate(50);
+            
+            if(!isPlaying) {
+                audio.play();
+                playBtn.innerText = "⏸️";
+                playBtn.style.background = "rgba(255,255,255,0.5)";
+            } else {
+                audio.pause();
+                playBtn.innerText = "🎵";
+                playBtn.style.background = "var(--glass)";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 3. وظيفة المفاجأة الكبرى (اهتزاز + صوت + تأثيرات)
+        function triggerSurprise() {
+            const content = document.getElementById('mainContent');
+            const message = document.getElementById('hiddenMessage');
+
+            // 1. اهتزاز الموبايل (نمط قوي: اهتزاز، توقف، اهتزاز)
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200, 100, 300]);
+            }
+
+            // 2. اهتزاز الشاشة بصرياً
+            content.classList.add('shake-anim');
+            setTimeout(() => content.classList.remove('shake-anim'), 500);
+
+            // 3. إظهار الرسالة
+            message.style.display = 'block';
+
+            // 4. إطلاق الزينة (Confetti)
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff758c', '#ffd166', '#ffffff', '#23d5ab']
+            });
+        }
+
+        // 4. تأثير تساقط الورود في الخلفية (Canvas)
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const items = ['🌸', '🌷', '✨', '💖', '🦋'];
+        let particlesArray = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = -20;
+                this.size = Math.random() * 25 + 15;
+                this.speed = Math.random() * 2 + 1;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() < 0.5 ? -1 : 1;
+                this.emoji = items[Math.floor(Math.random() * items.length)];
+            }
+            update() {
+                this.y += this.speed;
+                this.angle += this.spin;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.font = this.size + 'px serif';
+                ctx.fillText(this.emoji, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 30; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // إعادة ضبط المقاسات عند تدوير الموبايل
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
